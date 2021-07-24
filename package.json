@@ -1,0 +1,18 @@
+{
+  "name": "dynamic-object-yadab",
+  "version": "1.0.0",
+  "description": "Manage a list by dividing it in a dynamic object depending on that list's specific item",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "npm",
+    "react",
+    "dynamic-object",
+    "list-to-object",
+    "key-list-pair"
+  ],
+  "author": "Yadab Sd",
+  "license": "ISC"
+}
