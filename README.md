@@ -40,22 +40,26 @@ let list = [
 
 getDynamicObject(list, 'brand') // instruct to divide list depending on brand (brandwise)
 
-output: 
+/* output: 
     {
-        xioami: [{
-            product: 1,
-            name: xiaomi 2/64
-            brand: xiaomi
-        },{
-            product: 3,
-            name: pocco x3 8/256
-            brand: xiaomi
-        }],
-        samsung: [{
-            product: 2,
-            name: samsung A21
-            brand: samsung
-        }]
+        xioami: [
+            {
+                product: 1,
+                name: xiaomi 2/64
+                brand: xiaomi
+            },{
+                product: 3,
+                name: pocco x3 8/256
+                brand: xiaomi
+            }
+        ],
+        samsung: [
+            {
+                product: 2,
+                name: samsung A21
+                brand: samsung
+            }
+        ]
     }
-
+*/
 ```
