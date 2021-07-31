@@ -1,11 +1,11 @@
-# Divide a list into object based on a specific field
----
+## Divide a list into object based on a specific field
+
 New object = {
     key will be that field value: Value will be a list item containing that filed value
 }
----
 
-## Installation
+
+### Installation
 
 Use the package manager to install foobar.
 
@@ -13,7 +13,7 @@ Use the package manager to install foobar.
 npm install dynamic-object-yadab
 ```
 
-## Usage
+### Usage
 
 ```javascript
 import { getDynamicObject } from 'dynamic-object-package'
