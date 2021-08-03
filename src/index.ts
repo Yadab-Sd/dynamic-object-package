@@ -1,6 +1,6 @@
 import a from './store';
 
-module.exports.getDynamicObject = (list: any[], fieldName: string) => { // this 'list' will devide based on 'fieldName'
+const getDynamicObject = (list: any[], fieldName: string) => { // this 'list' will devide based on 'fieldName'
     let obj:any = <{
         [index: string]: any
     }>{}
@@ -16,6 +16,6 @@ module.exports.getDynamicObject = (list: any[], fieldName: string) => { // this 
     return obj;
 }
 
-module.exports.sayHi = () => {
+const sayHi = () => {
     return a();
 }
