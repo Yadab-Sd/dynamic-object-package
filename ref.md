@@ -10,8 +10,8 @@ babel => added for latest features using of es7 with browser support (max browse
                         others files will not, privacy issue
                         .can also use .npmignore for this like .gitignore
                         for better understanding: https://blog.npmjs.org/post/165769683050/publishing-what-you-mean-to-publish
-
 jest ts-jest @types/jest: ts jest also needed for ts support
+types&main: in package.json, it tells typescript & code-editors where to find type definition for typescript & tells npm from where module will be exported
 
 remember:
 echo "node_modules" >> .gitignore
