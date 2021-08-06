@@ -1,5 +1,5 @@
- function abc() {
-     return "Hi"
- }
+function abc() {
+  return 'Hi';
+}
 
-export default abc
+export default abc;

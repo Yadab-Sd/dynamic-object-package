@@ -1,21 +1,22 @@
 import a from './store';
 
-export const getDynamicObject = (list: any[], fieldName: string) => { // this 'list' will devide based on 'fieldName'
-    let obj:any = <{
-        [index: string]: any
-    }>{}
+export const getDynamicObject = (list: any[], fieldName: string) => {
+  // this 'list' will devide based on 'fieldName'
+  const obj: any = {} as {
+    [index: string]: any;
+  };
 
-    list.forEach((item: { [x: string]: any }) => { 
-        if (obj[item[fieldName]]) {
-            obj[item[fieldName]].push(item)
-        } else {
-            obj[item[fieldName]] = [item]
-        }
-    })
+  list.forEach((item: { [x: string]: any }) => {
+    if (obj[item[fieldName]]) {
+      obj[item[fieldName]].push(item);
+    } else {
+      obj[item[fieldName]] = [item];
+    }
+  });
 
-    return obj;
-}
+  return obj;
+};
 
 export const sayHi = () => {
-    return a();
-}
+  return a() + 'HI';
+};
