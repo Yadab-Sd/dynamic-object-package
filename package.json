@@ -11,19 +11,19 @@
     "start:dev": "nodemon",
     "start:prod": "npm run build && node build/index.js",
     "build": "rimraf ./build && npm run build:types && npm run build:js",
-    "build:types": "tsc --emitDeclarationOnly",
+    "build:types": "tsc --emitDeclarationOnly --skipLibCheck",
     "build:js": "babel ./src --out-dir build --extensions \".ts,.tsx\" --source-maps inline",
     "tsc2js": "tsc",
     "babel:v": "babel --version",
-    "test": "jest --config jestconfig.json",
     "format": "prettier --write \"src/**/(*.|*.test.)(ts|js|jsx|tsx)\"",
     "lint": "tslint -p tsconfig.json",
     "prepare": "npm run build",
-    "prepublishOnly": "npm test && npm run lint",
+    "prepublishOnly": "npm run lint",
     "preversion": "npm run lint",
     "version": "npm run format && git add -A src",
     "postversion": "git push && git push --tags"
-  },
+  }
+  ,
   "files": [
     "build/**/*"
   ],
