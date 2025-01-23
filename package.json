@@ -1,6 +1,6 @@
 {
   "name": "dynamic-object-yadab",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Manage a list by dividing it in a dynamic object depending on that list's specific item",
   "main": "build/index.js",
   "types": "build/index.d.ts",
