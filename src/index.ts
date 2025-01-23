@@ -1,22 +1,44 @@
-import a from './store';
+export const getDynamicObject = (list: any[], key: string, skipKey?: boolean) => {
+  let hasKeyInAtLeastOneItem = false;
+  const obj: any = {};
 
-export const getDynamicObject = (list: any[], fieldName: string) => {
-  // this 'list' will devide based on 'fieldName'
-  const obj: any = {} as {
-    [index: string]: any;
+  // Helper function to get the value of a nested key using dot notation
+  const getNestedValue = (item: any, keyPath: string): any => {
+    return keyPath.split('.').reduce((acc, curr) => (acc && acc[curr] != null ? acc[curr] : undefined), item);
   };
 
   list.forEach((item: { [x: string]: any }) => {
-    if (obj[item[fieldName]]) {
-      obj[item[fieldName]].push(item);
-    } else {
-      obj[item[fieldName]] = [item];
+    const nestedValue = getNestedValue(item, key); // Get the nested value dynamically
+
+    if (nestedValue !== null && nestedValue !== undefined) {
+      hasKeyInAtLeastOneItem = true;
+      const objKey = JSON.stringify(nestedValue); // Stringify for grouping consistency
+
+      if (!obj.hasOwnProperty(objKey)) {
+        obj[objKey] = [];
+      }
+
+      if (skipKey) {
+        // Remove the specified key (and its nested structure) from the object
+        const filteredItem = JSON.parse(JSON.stringify(item)); // Deep clone the object
+        let temp = filteredItem;
+        const keys = key.split('.');
+        for (let i = 0; i < keys.length - 1; i++) {
+          if (temp[keys[i]]) {
+            temp = temp[keys[i]];
+          }
+        }
+        delete temp[keys[keys.length - 1]]; // Delete the final key
+        obj[objKey].push(filteredItem);
+      } else {
+        obj[objKey].push(item);
+      }
     }
   });
 
-  return obj;
-};
+  if (!hasKeyInAtLeastOneItem) {
+    throw new Error(`Wrong key: ${key}`);
+  }
 
-export const sayHi = () => {
-  return a() + 'HI';
+  return obj;
 };

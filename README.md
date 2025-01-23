@@ -1,65 +1,118 @@
-## Divide a list into object based on a specific field
+# **Dynamic Object Utility**
 
-New object = {
-    key will be that field value: Value will be a list item containing that filed value
-}
+A lightweight utility for transforming and grouping arrays into objects based on a specific field. Perfect for scenarios where you need to reorganize collections for better data handling.
 
+---
 
-### Installation
+## **Installation**
 
-Use the package manager to install foobar.
+Install the package using npm:
 
 ```bash
 npm install dynamic-object-yadab
 ```
 
-### Usage
+---
+# Method
+getDynamicObject(list: object[], key: string, skipKey?: boolean): object
+
+#### Parameters:
+- list: An array of objects to transform.
+- key: The field used as the key for grouping. Supports dot notation for nested fields.
+- skipKey (optional): If set to true, the specified key will be removed from the grouped objects. Default is false.
+
+> Returns: An object where:
+>> Keys are derived from the specified field.\
+>> Values are arrays of objects (or individual objects, depending on your implementation).
+
+---
+
+# Usage
+#### Example 1: Grouping by a Simple Key
+```javascript
+import { getDynamicObject } from 'dynamic-object-yadab';
+
+const list = [
+  { product: 1, name: 'iPhone 16 Pro Max 8/512', category: 'smartphone' },
+  { product: 2, name: 'Whole Milk 5lb', category: 'grocery' },
+  { product: 3, name: 'Samsung S21', category: 'smartphone' },
+];
+
+const result = getDynamicObject(list, 'category');
+console.log(result);
+```
+
+#### Output:
+```javascript
+{
+  "smartphone": [
+    { product: 1, name: 'iPhone 16 Pro Max 8/512', category: 'smartphone' },
+    { product: 3, name: 'Samsung S21', category: 'smartphone' }
+  ],
+  "grocery": [
+    { product: 2, name: 'Whole Milk 5lb', category: 'grocery' }
+  ]
+}
+```
+
+#### Example 2: Removing the Key from Values
+If you pass the third parameter (skipKey) as true:
 
 ```javascript
-import { getDynamicObject } from 'dynamic-object-package'
-
-# your data 
-
-let list = [
-    {
-        product: 1,
-        name: xiaomi 2/64
-        brand: xiaomi
-    },
-    {
-        product: 2,
-        name: samsung A21
-        brand: samsung
-    },
-    {
-        product: 3,
-        name: pocco x3 8/256
-        brand: xiaomi
-    },
-]
-
-getDynamicObject(list, 'brand') // instruct to divide list depending on brand (brandwise)
-
-/* output: 
-    {
-        xioami: [
-            {
-                product: 1,
-                name: xiaomi 2/64
-                brand: xiaomi
-            },{
-                product: 3,
-                name: pocco x3 8/256
-                brand: xiaomi
-            }
-        ],
-        samsung: [
-            {
-                product: 2,
-                name: samsung A21
-                brand: samsung
-            }
-        ]
-    }
-*/
+const result = getDynamicObject(list, 'category', true);
+console.log(result);
 ```
+
+#### Output:
+```javascript
+{
+  "smartphone": [
+    { product: 1, name: 'iPhone 16 Pro Max 8/512' },
+    { product: 3, name: 'Samsung S21' }
+  ],
+  "grocery": [
+    { product: 2, name: 'Whole Milk 5lb' }
+  ]
+}
+```
+
+#### Example 3: Grouping by Nested Key
+```javascript
+const list = [
+  {
+    product: 1,
+    name: 'iPhone 16 Pro Max 8/512',
+    category: { sku: 'smartphone', name: 'Smartphone' },
+  },
+  {
+    product: 2,
+    name: 'Whole Milk 5lb',
+    category: { sku: 'grocery', name: 'Grocery' },
+  },
+  {
+    product: 3,
+    name: 'Samsung S21',
+    category: { sku: 'smartphone', name: 'Smartphone' },
+  },
+];
+
+const result = getDynamicObject(list, 'category.sku', true);
+console.log(result);
+```
+
+#### Output:
+```javascript
+{
+  "smartphone": [
+    { product: 1, name: 'iPhone 16 Pro Max 8/512', category: { name: 'Smartphone' } },
+    { product: 3, name: 'Samsung S21', category: { name: 'smartphone' } }
+  ],
+  "grocery": [
+    { product: 2, name: 'Whole Milk 5lb', category: { name: 'Grocery' } }
+  ]
+}
+```
+
+
+> [!NOTE]
+> If no item in the list is with the given key, you will see an error.

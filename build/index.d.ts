@@ -1,3 +1,2 @@
-export declare const getDynamicObject: (list: any[], fieldName: string) => any;
-export declare const sayHi: () => string;
+export declare const getDynamicObject: (list: any[], key: string, skipKey?: boolean | undefined) => any;
 //# sourceMappingURL=index.d.ts.map
