@@ -1,6 +1,6 @@
 {
   "name": "dynamic-object-yadab",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Manage a list by dividing it in a dynamic object depending on that list's specific item",
   "main": "build/index.js",
   "types": "build/index.d.ts",
@@ -22,8 +22,7 @@
     "preversion": "npm run lint",
     "version": "npm run format && git add -A src",
     "postversion": "git push && git push --tags"
-  }
-  ,
+  },
   "files": [
     "build/**/*"
   ],
