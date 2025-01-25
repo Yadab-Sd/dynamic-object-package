@@ -12,7 +12,7 @@ export const getDynamicObject = (list: any[], key: string, skipKey?: boolean) =>
 
     if (nestedValue !== null && nestedValue !== undefined) {
       hasKeyInAtLeastOneItem = true;
-      const objKey = JSON.stringify(nestedValue); // Stringify for grouping consistency
+      const objKey = typeof nestedValue === "object" ? JSON.stringify(nestedValue) : nestedValue;
 
       if (!obj.hasOwnProperty(objKey)) {
         obj[objKey] = [];
